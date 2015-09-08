@@ -1,0 +1,9 @@
+/* BEGIN Light */
+@font-face {
+  font-family: 'RobotoSlab';
+  @include fontdef-woff($RobotoSlabFontPath, $RobotoSlabFontName, $RobotoSlabFontVersion, "Light");
+  font-weight: 300;
+  font-style: normal;
+
+}
+/* END Light */

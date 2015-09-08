@@ -1,0 +1,148 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+$RobotoDraftFontPath: "/lib/robotodraft/fonts" !default;
+$RobotoSlabFontPath: "/lib/robotoslab/fonts" !default;
+
+@import
+  // Ionicons
+"www/lib/ionic/scss/ionicons/ionicons.scss",
+  // Variables
+"www/lib/ionic/scss/mixins",
+"mixins",
+"www/lib/ionic/scss/variables",
+  // Base
+"www/lib/ionic/scss/reset",
+"www/lib/ionic/scss/scaffolding",
+"www/lib/ionic/scss/type",
+  // Components
+"www/lib/ionic/scss/action-sheet",
+"www/lib/ionic/scss/backdrop",
+"www/lib/ionic/scss/bar",
+"www/lib/ionic/scss/tabs",
+"www/lib/ionic/scss/menu",
+"www/lib/ionic/scss/modal",
+"www/lib/ionic/scss/popover",
+"www/lib/ionic/scss/popup",
+"www/lib/ionic/scss/loading",
+"www/lib/ionic/scss/items",
+"www/lib/ionic/scss/list",
+"www/lib/ionic/scss/badge",
+"www/lib/ionic/scss/slide-box",
+"www/lib/ionic/scss/refresher",
+"www/lib/ionic/scss/spinner",
+  // Forms
+"www/lib/ionic/scss/form",
+"www/lib/ionic/scss/checkbox",
+"www/lib/ionic/scss/toggle",
+"www/lib/ionic/scss/radio",
+"www/lib/ionic/scss/range",
+"www/lib/ionic/scss/select",
+"www/lib/ionic/scss/progress",
+  // Buttons
+"www/lib/ionic/scss/button",
+"www/lib/ionic/scss/button-bar",
+  // Util
+"www/lib/ionic/scss/grid",
+"www/lib/ionic/scss/util",
+"www/lib/ionic/scss/platform",
+  // Animations
+"www/lib/ionic/scss/animations",
+"www/lib/ionic/scss/transitions";
+
+
+// Include  Fonts
+@import "www/lib/robotodraft/sass/robotodraft.scss";    // REMINDER: edit as appropriate!
+@import "www/lib/robotoslab/sass/robotoslab.scss";    // REMINDER: edit as appropriate!
+
+
+
+
+.bar .button{
+  color: #ffffff !important;
+}&
+h1{
+  color: #FFFFFF !important;
+ }&
+   .bar-header .button+.title{
+  text-align: center !important;
+}
+div.rainbow{
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 99;
+  position: absolute;
+  left: 0;
+  top:44px;
+  display: inline-block;
+  width: 100%;
+  content: '';
+  height: 4px;
+  background-color: $calm;
+  background-size: 100% 100%;
+  @include linear-gradient(to left,rgba(77,20,140,1) 0%,rgba(77,20,140,1) 18%,rgba(27,119,205,1) 18%,rgba(27,119,205,1) 33%,rgba(54,160,48,1) 33%,rgba(54,160,48,1) 50%,rgba(255,210,0,1) 50%,rgba(255,210,0,1) 66%,rgba(255,160,0,1) 66%,rgba(255,160,0,1) 83%,rgba(207,15,15,1) 83%,rgba(207,15,15,1) 100%);
+}
+
+.rainbowexpanded{
+  top: 74px !important;
+}
+
+.avatar{
+  position: relative !important;
+  margin: 0 20px 0 0px;
+}
+.bar h2{
+  margin-top: 35px;
+  margin-left: 10px;
+}
+
+
+/*INTRO CSS*/
+
+.intro-buttons{
+  position: fixed;
+  bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slider-pager{
+  bottom: 0;
+}
+
+/*
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+*/
+
+
+
+
+

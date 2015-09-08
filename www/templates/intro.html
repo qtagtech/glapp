@@ -1,0 +1,30 @@
+<ion-view view-title="BISHOMEN Star" align-title="left">
+    <ion-content  class="animate-pan-in-left" style="background: url(img/wt_background.jpg) center; background-size: cover; display: block; height: 100%;">
+
+            <ion-slide-box on-slide-changed="slideChanged(index)">
+                <ion-slide>
+                    <img id="page1" src="img/page1.jpg"></img>
+                </ion-slide>
+                <ion-slide>
+                    <img id="page2" src="img/page2.jpg"></img>
+                </ion-slide>
+                <ion-slide>
+                    <img id="page3" src="img/page3.jpg"></img>
+                </ion-slide>
+                <ion-slide>
+                    <img id="page4" src="img/page4.jpg"></img>
+                </ion-slide>
+                <ion-slide>
+                    <img id="page5" src="img/page5.jpg"></img>
+                </ion-slide>
+            </ion-slide-box>
+
+
+    </ion-content>
+    <div class="button-bar intro-buttons">
+        <button class="button button-small button-border icon-left ion-arrow-left-a button-stable-900" ng-show="slideIndex > 0" ng-click="previous()"></button>
+        <button class="button button-small button-border icon-left ion-close button-assertive-900" ng-click="startApp()" ng-show="slideIndex < 4 || !slideIndex">Saltar</button>
+        <button class="button button-small button-border icon-left ion-close button-positive-900" ng-click="startApp()" ng-show="slideIndex == 4 ">&iexcl;Comenzar!</button>
+        <button class="button button-small button-border icon-right ion-arrow-right-a button-stable-900" ng-show="slideIndex != 4" ng-click="next()"></button>
+    </div>
+</ion-view>
