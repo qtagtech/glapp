@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     // Form data for the login modal
@@ -274,5 +274,82 @@ angular.module('starter.controllers', [])
         // Activate ink for controller
 
     })
+
+//PHYSICS CONTROLLERS
+// Demos
+    .controller('Box2DController', function($scope, nuiWorld) {
+        // Clean up. This proto version of nui-box2d needs a hack to reset the world:
+        nuiWorld.reset();
+
+        $scope.blocks = [];
+        $scope.selectedBar = '';
+
+        // just feeding in parameters for a regular div:
+       /* for(var i=1; i < 10; i++){
+            $scope.blocks.push({"shape": "box", "x": i * 10 + '%', "y": '20%', "width": "45px", "height": "45px"})
+        }*/
+        for(var i=1; i <10; i++){
+            $scope.blocks.push({id: i,"shape": "circle", "x": i * 15 + '%', "y": '10%', "width": "130px", "height": "130px",state: 'normal',color: get_random_color()})
+        }
+
+        $scope.makeStyle = function(block){
+            var br = (block.shape == "circle") ? block.width : 0;
+            return({
+                "width": block.width,
+                "height": block.height,
+                "border-radius": br
+            });
+        }
+
+        $scope.convertToSquare = function(block){
+            //console.log('from -->' + block.state);
+            if(block.state === 'normal'){
+                block.state = 'selected';
+            }else{
+                if(block.state === 'selected'){
+                    block.state = 'double';
+                }else{
+                    block.state = 'normal';
+                }
+            }
+            //console.log('to -->' + block.state);
+
+            //block.shape = block.shape == 'circle' ? 'square' : 'circle';
+
+
+        }
+
+        $scope.itemOnLong = function(block) {
+            console.log(block);
+            console.log('Long press');
+        }
+
+        $scope.itemOnEnd = function(block) {
+            console.log('Touch end');
+        }
+
+        function rand(min, max) {
+            return parseInt(Math.random() * (max-min+1), 10) + min;
+        }
+
+        function get_random_color() {
+            var h = rand(180, 250);
+            var s = rand(30, 100);
+            var l = rand(20, 70);
+            return 'hsl(' + h + ',' + s + '%,' + l + '%)';
+        }
+
+    })
+    .controller('ListController', function($scope, nuiWorld) {
+        // Clean up. This proto version of nui-box2d needs a hack to reset the world:
+        nuiWorld.reset();
+        $scope.blocks = [];
+        for(var i=0; i < 5; i++){
+            $scope.blocks.push({"x": i})
+        }
+
+    });
+
+
 
 ;
