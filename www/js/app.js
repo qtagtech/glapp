@@ -43,9 +43,10 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directives', 
             controller: 'IntroCtrl'
         })
 
-        .state('demos', {
+        .state('physics', {
             url: '/physics',
-            templateUrl: 'templates/physics.html'
+            templateUrl: 'templates/physics.html',
+            controller: 'physicsController'
         })
 
     .state('app.activity', {
@@ -135,5 +136,5 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directives', 
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/physics');
+    $urlRouterProvider.otherwise('/');
 });

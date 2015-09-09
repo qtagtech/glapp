@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
+angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     // Form data for the login modal
@@ -219,7 +219,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
 })
 
-    .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate, $timeout, $window ,ionicMaterialInk, ionicMaterialMotion) {
+    .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate,$ionicPopup, $timeout, $window ,ionicMaterialInk, ionicMaterialMotion) {
 
         $timeout(function(){
             var wHeight = $window.innerHeight;
@@ -247,7 +247,30 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
         // Called to navigate to the main app
         $scope.startApp = function() {
-            $state.go('app.gallery');
+
+                var confirmPopup = $ionicPopup.confirm({
+                    title: '&iquest;Deseas personalizar tu experiencia?',
+                    template: 'Cu&eacute;ntanos qu&eacute; te enamora y as&iacute; podremos darte mejores recomendaciones.',
+                    buttons: [
+                        { text: '<i class="icon ion-close "></i>',
+                        onTap: function(e){
+
+                            $state.go('app.gallery');
+                        }
+                        },
+                        {
+                            text: '<i class="icon ion-ios-heart"></i>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                $state.go('physics');
+                            }
+                        }
+
+                    ]
+                });
+
+
+            //
         };
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
@@ -277,11 +300,40 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
 //PHYSICS CONTROLLERS
 // Demos
-    .controller('Box2DController', function($scope, nuiWorld) {
+    .controller('physicsController', function($scope, nuiWorld, $timeout, $ionicPopup) {
+        Element.prototype.remove = function() {
+            this.parentElement.removeChild(this);
+        }
+        NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+            for(var i = this.length - 1; i >= 0; i--) {
+                if(this[i] && this[i].parentElement) {
+                    this[i].parentElement.removeChild(this[i]);
+                }
+            }
+        }
+
+        document.addEventListener("mousedown", function(event){
+            event.preventDefault();
+            return false;
+        });
+
+        document.onmousedown=disableclick;
+        status="Right Click Disabled";
+        function disableclick(event)
+        {
+            if(event.button==2)
+            {
+                return false;
+            }
+        }
+
         // Clean up. This proto version of nui-box2d needs a hack to reset the world:
+        var timerElement = document.getElementsByTagName('timer')[0];
+        $scope.timerRunning = false;
         nuiWorld.reset();
 
         $scope.blocks = [];
+        $scope.removeBlock = null;
         $scope.selectedBar = '';
 
         // just feeding in parameters for a regular div:
@@ -289,7 +341,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
             $scope.blocks.push({"shape": "box", "x": i * 10 + '%', "y": '20%', "width": "45px", "height": "45px"})
         }*/
         for(var i=1; i <10; i++){
-            $scope.blocks.push({id: i,"shape": "circle", "x": i * 15 + '%', "y": '10%', "width": "130px", "height": "130px",state: 'normal',color: get_random_color()})
+            $scope.blocks.push({id: i,"shape": "circle", "x": i * 15 + '%', "y": '10%', "width": "130px", "height": "130px",state: 'normal',color: get_random_color(),showing: true})
         }
 
         $scope.makeStyle = function(block){
@@ -303,6 +355,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
         $scope.convertToSquare = function(block){
             //console.log('from -->' + block.state);
+
             if(block.state === 'normal'){
                 block.state = 'selected';
             }else{
@@ -316,17 +369,90 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
 
             //block.shape = block.shape == 'circle' ? 'square' : 'circle';
 
-
         }
 
         $scope.itemOnLong = function(block) {
-            console.log(block);
-            console.log('Long press');
+            $scope.removeBlock = block;
+            //console.log("start long");
+            $scope.$broadcast('timer-start');
+            $scope.timerRunning = true;
+            /*console.log(block);
+            console.log('Long press');*/
         }
 
         $scope.itemOnEnd = function(block) {
-            console.log('Touch end');
+            $scope.timerRunning = false;
+            $scope.removeBlock = null;
+            //console.log("end long");
+            $scope.$broadcast('timer-stop');
+            //console.log('Touch end');
         }
+
+        $scope.startTimer = function (){
+            $scope.$broadcast('timer-start');
+            $scope.timerRunning = true;
+        };
+
+        $scope.stopTimer = function (){
+            $scope.$broadcast('timer-stop');
+            $scope.timerRunning = false;
+        };
+
+        $scope.$on('timer-tick', function (event, args) {
+           //console.log( $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n');
+        });
+        $scope.$on('timer-stopped', function (event, data){
+            $scope.timerRunning = false;
+            //console.log('Timer Stopped at: ', data.millis);
+            if(data.millis == 0){
+                //delete object
+                document.getElementById($scope.removeBlock.id).remove();
+                $scope.removeBlock.showing = false;
+                /*var index = $scope.blocks.indexOf($scope.removeBlock);
+                $scope.blocks.splice(index, 1);*/
+                //console.log('fin');
+
+            }
+            else{
+                //restart timer
+                var dif = (4000 - data.millis) / 1000;
+                timerElement.addCDSeconds(dif + 1);
+            }
+        });
+        $scope.showAlert = function() {
+            var confirmPopup = $ionicPopup.alert({
+                title: 'Ayuda',
+                subtitle: 'En esta ventana puedes escoger qu&eacute; te enamora.',
+                template: '<p>Cada c&iacute;rculo representa un producto o un servicio que ofrecemos. <br />Para indicar que alguno te gusta, presiona el c&iacute;rculo correspondiente una vez. Si te enamora, es decir, te gusta mucho, presi&oacute;nalo de nuevo.<br />Si por el contrario, alguno no te gusta, presi&oacute;nalo y mantenlo as&iacute; hasta que el contador termine y se eliminar&aacute;</p>',
+                buttons: [
+                    { text: '!Entendido!',
+                        type: 'button-positive',
+                        onTap: function(e){
+
+
+                        }
+                    }
+                ]
+            });
+        };
+
+
+        /*$scope.showHelp = function(){
+            var confirmPopup = $ionicPopup.alert({
+                title: 'Ayuda',
+                subtitle: 'En esta ventana puedes escoger qu&eacute; te enamora.',
+                template: '<p>Cada &iacute;rculo representa un producto o un servicio que ofrecemos. <br />Para indicar que alguno te gusta, presiona el c&iacute;rculo correspondiente una vez. Si te enamora, es decir, te gusta mucho, presi&oacute;nalo de nuevo.<br />Si por el contrario, alguno no te gusta, presi&oacute;nalo y mantenlo as&iacute; hasta que el contador termine y se eliminar&aacute;</p>',
+                buttons: [
+                    { text: '!Listo!',
+                        onTap: function(e){
+
+
+                        }
+                    }
+                ]
+            });
+        };*/
+
 
         function rand(min, max) {
             return parseInt(Math.random() * (max-min+1), 10) + min;
@@ -349,7 +475,6 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d'])
         }
 
     });
-
 
 
 ;

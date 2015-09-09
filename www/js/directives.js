@@ -21,7 +21,7 @@ angular.module('starter.directives',[])
 
 				$elm.bind('mouseup', function(evt) {
 					// Prevent the onLongPress event from firing
-					$scope.longPress = false;
+					$scope.longClick = false;
 					// If there is an on-touch-end function attached to this element, apply it
 					if ($attrs.onClickEnd) {
 						$scope.$apply(function() {
