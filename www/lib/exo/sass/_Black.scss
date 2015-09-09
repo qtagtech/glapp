@@ -1,0 +1,8 @@
+/* BEGIN Black */
+@font-face {
+	font-family: exoblack;
+	@include fontdef-woff($exoFontPath, $exoFontName, $exoFontVersion, "black");
+	font-weight: 900;
+	font-style: normal;
+}
+/* END black */

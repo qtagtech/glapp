@@ -1,0 +1,8 @@
+/* BEGIN Thin */
+@font-face {
+	font-family: exothin;
+	@include fontdef-woff($exoFontPath, $exoFontName, $exoFontVersion, "thin");
+	font-weight: 100;
+	font-style: normal;
+}//
+/* END thin */

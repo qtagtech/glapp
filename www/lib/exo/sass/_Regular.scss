@@ -1,0 +1,14 @@
+/* BEGIN Regular */
+@font-face {
+	font-family: exoregular;
+	@include fontdef-woff($exoFontPath, $exoFontName, $exoFontVersion, "regular");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: exo;
+	@include fontdef-woff($exoFontPath, $exoFontName, $exoFontVersion, "regular");
+	font-weight: normal;
+	font-style: normal;
+}
+/* END regular */

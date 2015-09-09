@@ -12398,7 +12398,7 @@ function isPossiblyDangerousMemberName(name) {
 }
 
 /**
- * Implementation of the "Black Hole" variant from:
+ * Implementation of the "black Hole" variant from:
  * - http://jsperf.com/angularjs-parse-getter/4
  * - http://jsperf.com/path-evaluation-simplified/7
  */

@@ -5,7 +5,7 @@
   src: url("./fonts/Thin/RobotoDraft-Thin-webfont.eot?iefix") format("embedded-opentype"), url("./fonts/Thin/RobotoDraft-Thin-webfont.woff?v=1.0.0") format("woff"), url("./fonts/Thin/RobotoDraft-Thin-webfont.ttf?v=1.0.0") format("truetype");
   font-weight: 100;
   font-style: normal; }
-/* END Thin */
+/* END thin */
 /* BEGIN Light */
 @font-face {
   font-family: 'RobotoSlab';
@@ -14,7 +14,7 @@
   font-weight: 300;
   font-style: normal; }
 /* END Light */
-/* BEGIN Regular */
+/* BEGIN regular */
 @font-face {
   font-family: 'RobotoSlab';
   src: url("./fonts/Regular/RobotoDraft-Regular-webfont.eot");
@@ -27,8 +27,8 @@
   src: url("./fonts/Regular/RobotoDraft-Regular-webfont.eot?iefix") format("embedded-opentype"), url("./fonts/Regular/RobotoDraft-Regular-webfont.woff?v=1.0.0") format("woff"), url("./fonts/Regular/RobotoDraft-Regular-webfont.ttf?v=1.0.0") format("truetype");
   font-weight: normal;
   font-style: normal; }
-/* END Regular */
-/* BEGIN Bold */
+/* END regular */
+/* BEGIN bold */
 @font-face {
   font-family: 'RobotoSlab';
   src: url("./fonts/Bold/RobotoDraft-Bold-webfont.eot");
@@ -41,6 +41,6 @@
   src: url("./fonts/Bold/RobotoDraft-Bold-webfont.eot?iefix") format("embedded-opentype"), url("./fonts/Bold/RobotoDraft-Bold-webfont.woff?v=1.0.0") format("woff"), url("./fonts/Bold/RobotoDraft-Bold-webfont.ttf?v=1.0.0") format("truetype");
   font-weight: bold;
   font-style: normal; }
-/* END Bold */
+/* END bold */
 
 /*# sourceMappingURL=robotoslab.css.map */

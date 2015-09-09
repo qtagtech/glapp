@@ -157,7 +157,7 @@ function sanitizeText(chars) {
 }
 
 
-// Regular Expressions for parsing tags and attributes
+// regular Expressions for parsing tags and attributes
 var START_TAG_REGEXP =
        /^<((?:[a-zA-Z])[\w:-]*)((?:\s+[\w:-]+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)\s*(>?)/,
   END_TAG_REGEXP = /^<\/\s*([\w:-]+)[^>]*>/,

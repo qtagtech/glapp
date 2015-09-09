@@ -4,7 +4,7 @@
   src: url("./fonts/Thin/RobotoDraft-Thin.woff2?v=1.0.0") format("woff2"), url("./fonts/Thin/RobotoDraft-Thin.woff?v=1.0.0") format("woff"), url("./fonts/Thin/RobotoDraft-Thin.ttf?v=1.0.0") format("truetype");
   font-weight: 100;
   font-style: normal; }
-/* END Thin */
+/* END thin */
 /* BEGIN Light */
 @font-face {
   font-family: RobotoDraft;
@@ -12,7 +12,7 @@
   font-weight: 300;
   font-style: normal; }
 /* END Light */
-/* BEGIN Regular */
+/* BEGIN regular */
 @font-face {
   font-family: RobotoDraft;
   src: url("./fonts/Regular/RobotoDraft-Regular.woff2?v=1.0.0") format("woff2"), url("./fonts/Regular/RobotoDraft-Regular.woff?v=1.0.0") format("woff"), url("./fonts/Regular/RobotoDraft-Regular.ttf?v=1.0.0") format("truetype");
@@ -23,7 +23,7 @@
   src: url("./fonts/Regular/RobotoDraft-Regular.woff2?v=1.0.0") format("woff2"), url("./fonts/Regular/RobotoDraft-Regular.woff?v=1.0.0") format("woff"), url("./fonts/Regular/RobotoDraft-Regular.ttf?v=1.0.0") format("truetype");
   font-weight: normal;
   font-style: normal; }
-/* END Regular */
+/* END regular */
 /* BEGIN Italic */
 @font-face {
   font-family: RobotoDraft;
@@ -43,7 +43,7 @@
   font-weight: 500;
   font-style: normal; }
 /* END Medium */
-/* BEGIN Bold */
+/* BEGIN bold */
 @font-face {
   font-family: RobotoDraft;
   src: url("./fonts/Bold/RobotoDraft-Bold.woff2?v=1.0.0") format("woff2"), url("./fonts/Bold/RobotoDraft-Bold.woff?v=1.0.0") format("woff"), url("./fonts/Bold/RobotoDraft-Bold.ttf?v=1.0.0") format("truetype");
@@ -54,8 +54,8 @@
   src: url("./fonts/Bold/RobotoDraft-Bold.woff2?v=1.0.0") format("woff2"), url("./fonts/Bold/RobotoDraft-Bold.woff?v=1.0.0") format("woff"), url("./fonts/Bold/RobotoDraft-Bold.ttf?v=1.0.0") format("truetype");
   font-weight: bold;
   font-style: normal; }
-/* END Bold */
-/* BEGIN Bold Italic */
+/* END bold */
+/* BEGIN bold Italic */
 @font-face {
   font-family: RobotoDraft;
   src: url("./fonts/BoldItalic/RobotoDraft-BoldItalic.woff2?v=1.0.0") format("woff2"), url("./fonts/BoldItalic/RobotoDraft-BoldItalic.woff?v=1.0.0") format("woff"), url("./fonts/BoldItalic/RobotoDraft-BoldItalic.ttf?v=1.0.0") format("truetype");
@@ -66,13 +66,13 @@
   src: url("./fonts/BoldItalic/RobotoDraft-BoldItalic.woff2?v=1.0.0") format("woff2"), url("./fonts/BoldItalic/RobotoDraft-BoldItalic.woff?v=1.0.0") format("woff"), url("./fonts/BoldItalic/RobotoDraft-BoldItalic.ttf?v=1.0.0") format("truetype");
   font-weight: bold;
   font-style: italic; }
-/* END Bold Italic */
-/* BEGIN Black */
+/* END bold Italic */
+/* BEGIN black */
 @font-face {
   font-family: RobotoDraft;
   src: url("./fonts/Black/RobotoDraft-Black.woff2?v=1.0.0") format("woff2"), url("./fonts/Black/RobotoDraft-Black.woff?v=1.0.0") format("woff"), url("./fonts/Black/RobotoDraft-Black.ttf?v=1.0.0") format("truetype");
   font-weight: 900;
   font-style: normal; }
-/* END Black */
+/* END black */
 
 /*# sourceMappingURL=robotoslab.css.map */

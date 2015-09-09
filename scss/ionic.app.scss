@@ -19,6 +19,7 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 $RobotoDraftFontPath: "/lib/robotodraft/fonts" !default;
 $RobotoSlabFontPath: "/lib/robotoslab/fonts" !default;
+$exoFontPath: "/lib/exo/fonts" !default;
 $energized : #FFFF10;
 
 @import
@@ -71,6 +72,7 @@ $energized : #FFFF10;
 // Include  Fonts
 @import "www/lib/robotodraft/sass/robotodraft.scss";    // REMINDER: edit as appropriate!
 @import "www/lib/robotoslab/sass/robotoslab.scss";    // REMINDER: edit as appropriate!
+@import "www/lib/exo/sass/exo.scss";    // REMINDER: edit as appropriate!
 
 
 
@@ -189,7 +191,7 @@ text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
   text-align: center;
   padding: 45px 0;
   font-size: 18px;
-  font-family: RobotoSlab;
+  font-family: exothin;
 }
 .selected p{
   text-align: center;
@@ -249,6 +251,8 @@ text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 }*/
 
 h1.title{
+  font-family: exobold !important;
+  font-size: 1.2em !important;
   color: rgba(0,0,0,0.9) !important;
   font-weight: 900 !important;
   text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
@@ -261,6 +265,7 @@ h1.title{
   font-size: 2.5em;
 }
 .explanation{
+  font-family: exoregular !important;
   padding: 25px;
   text-transform: capitalize;
   color: #fff;
