@@ -353,7 +353,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
             });
         }
 
-        $scope.convertToSquare = function(block){
+        $scope.growMeShrinkMe = function(block){
             //console.log('from -->' + block.state);
 
             if(block.state === 'normal'){
@@ -406,8 +406,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
             //console.log('Timer Stopped at: ', data.millis);
             if(data.millis == 0){
                 //delete object
-                document.getElementById($scope.removeBlock.id).remove();
-                $scope.removeBlock.showing = false;
+                $scope.destroyMe($scope.removeBlock);
                 /*var index = $scope.blocks.indexOf($scope.removeBlock);
                 $scope.blocks.splice(index, 1);*/
                 //console.log('fin');
@@ -419,6 +418,20 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
                 timerElement.addCDSeconds(dif + 1);
             }
         });
+
+        // how to destroy an object properly:
+        // The directive saves a reference to the physics engine world body under the DOM element (look for 'body').
+        // FYI - likewise, it saves the ref the other way if you need it (check the source code) under body - fixture - userData.
+        $scope.destroyMe = function(block){
+          // Destroy the physics engine body. Fetch the click target from the mouse event target.
+          var theDOMElement = document.getElementById(block.id);
+          var thePhysicsWorldBody = theDOMElement.body;
+          nuiWorld.world.DestroyBody( thePhysicsWorldBody );
+          // Destroy the corresponding DOM element. In Angular world, we'll remove the Array item that creates the DOM element via ng-repeat in this demo. Angular will take care of removing the DOM element because of data-binding.
+          var pos = $scope.blocks.indexOf(block);
+          $scope.blocks.splice(pos,1);
+          $scope.removeBlock = null;
+        }
         $scope.showAlert = function() {
             var confirmPopup = $ionicPopup.alert({
                 title: 'Ayuda',
