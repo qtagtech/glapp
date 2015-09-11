@@ -1,0 +1,32 @@
+
+<ion-view style="background-image: url('../img/movingback.jpg');">
+    <ion-content class="back" scroll="true" >
+        <div class="ionic login" style="background-image: url('../img/movingback.jpg');" ng-app="login">
+            <div class="hero no-header flat ">
+                <div class="content animate-fade-slide-in">
+                    <img class="icon-logo item" src="../img/icon_glapp.png">
+                    <div class="animate-blinds"><h1 class="app-logo item">Glapp</h1></div>
+
+                </div>
+            </div>
+             <div class="facebook-login animate-slide-up">
+                 <button class="facebook button button-small icon-right ion-social-facebook  button-positive light-bg waves-effect waves-button waves-light" style="background-color:#3C568B ">Ingresa <br> con facebook</button>
+             </div>
+            <div class="list animate-ripple">
+                <label placeholder="Nombre" highlight-color="cyan-500" type="text" class="item item-input item-md-label"><input ng-model="creds.first_name" type="text"><span class="input-label">Nombre</span><div class="highlight highlight-balanced"></div></label>
+                <label placeholder="Apellido" highlight-color="cyan-500" type="text" class="item item-input item-md-label"><input ng-model="creds.last_name" type="text"><span class="input-label">Apellido</span><div class="highlight highlight-balanced"></div></label>
+                <label placeholder="Email" highlight-color="cyan-500" type="text" class="item item-input item-md-label"><input ng-model="creds.email" type="text"><span class="input-label">Email</span><div class="highlight highlight-balanced"></div></label>
+                <label placeholder="Password" highlight-color="energized" type="password" class="item item-input item-md-label"><input ng-model="creds.password" type="password"><span class="input-label">Password</span><div class="highlight highlight-energized"></div></label>
+            </div>
+            <div class="assertive" ng-show="error.message">{{error.message}}</div>
+            <!--<label placeholder="Username" highlight-color="balanced" type="text" class=" item-input item-md-label"><input type="text"><span class="input-label">Username</span><div class="highlight highlight-balanced"></div></label>-->
+
+
+
+        </div>
+    </ion-content>
+</ion-view>
+<div class="button-bar signup-bar">
+    <button class="button button-small button-assertive light-bg icon-left ion-ios-email-outline waves-effect waves-button waves-light" ng-click="signUpUser()">Guardar</button>
+    <button class="button button-small  button-positive light-bg icon-left ion-social-facebook waves-effect waves-button waves-light" style="background-color:#3C568B ">Facebook</button>
+</div>

@@ -1,0 +1,14 @@
+/* BEGIN Regular */
+@font-face {
+	font-family: lobstertworegular;
+	@include fontdef-woff($lobstertwoFontPath, $lobstertwoFontName, $lobstertwoFontVersion, "regular");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: lobstertwo;
+	@include fontdef-woff($lobstertwoFontPath, $lobstertwoFontName, $lobstertwoFontVersion, "regular");
+	font-weight: normal;
+	font-style: normal;
+}
+/* END regular */

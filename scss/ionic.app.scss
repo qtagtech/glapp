@@ -20,7 +20,23 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $RobotoDraftFontPath: "/lib/robotodraft/fonts" !default;
 $RobotoSlabFontPath: "/lib/robotoslab/fonts" !default;
 $exoFontPath: "/lib/exo/fonts" !default;
-$energized : #FFFF10;
+$lobstertwoFontPath: "/lib/lobstertwo/fonts" !default;
+
+//COLORS
+
+$orange_100 : #f2e0b2 !default;
+$orange_500 : #ff9800 !default;
+$orange_900 : #e65100 !default;
+$pink_100 : #f8bbd0 !default;
+$pink_500 : #e91e63 !default;
+$pink_900 : #880e4f !default;
+$cyan_100 : #b2ebf2 !default;
+$cyan_500 : #00838f !default;
+$cyan_900 : #006064 !default;
+
+$energized : $orange_500 !default;
+$positive : $cyan-500 !default;
+
 
 @import
   // Ionicons
@@ -73,6 +89,7 @@ $energized : #FFFF10;
 @import "www/lib/robotodraft/sass/robotodraft.scss";    // REMINDER: edit as appropriate!
 @import "www/lib/robotoslab/sass/robotoslab.scss";    // REMINDER: edit as appropriate!
 @import "www/lib/exo/sass/exo.scss";    // REMINDER: edit as appropriate!
+@import "www/lib/lobstertwo/sass/lobstertwo.scss";    // REMINDER: edit as appropriate!
 
 
 
@@ -291,6 +308,101 @@ timer span{
   top: 70px;
   left: 0;
   z-index: 999999;
+ }
+
+/*
+
+SIGNUP
+
+*/
+
+/*PAN ANIMATION*/
+@keyframes panning {
+  0% {
+    background-position: 100% 100%;
+  }
+  15%{
+    background-position: 0% 100%;
+  }
+  30% {
+    background-position: 100% 0%;
+  }
+  45% {
+    background-position: 0% 100%;
+  }
+  65% {
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 100% 100%;
+  }
+  130%{
+    background-position: 100% 0%;
+  }
+  200% {
+    background-position: 0 0;
+
+  }
+}
+.scroll{
+  height: 100% !important;
+}
+.login {
+//background: black url(https://unsplash.it/608/1080?image=56&blur) !important;
+  position: relative;
+  height: 100%!important;
+  width: 100%;
+  //background: black url(../img/moving_back.jpg center center cover) !important;
+  //background: black url(http://unsplash.it/1900/1900/?random&blur) !important;
+  background-size: 200% !important;
+  animation: panning 200s infinite linear;
+  z-index: 10;
+}
+.icon-logo{
+  display: inline;
+  border-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 1em !important;
+  max-width: 100px; height: auto;
+}
+.app-logo{
+  display: inline;
+  border-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: $pink_900 !important;
+  font-family: lobstertwobolditalic !important;
+  font-size: 5.5em !important;
+}
+
+@keyframes mySlideUp {
+  from {bottom: -110%;}
+  to {bottom: 0px;}
+}
+
+
+
+
+.signup-bar{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.facebook-login{
+  visibility: hidden;
+  position: relative;
+  animation: mySlideUp 2s 5s cubic-bezier(0.3,0.7,0.5,1);
+  animation-delay: 2s;
+  margin: 20px !important;
+  padding: 0 20px;
+  width: 100%;
+  font-family: Arial;
+  z-index: 99999;
+
+}&button{
+  width: 90%;
  }
 
 /*

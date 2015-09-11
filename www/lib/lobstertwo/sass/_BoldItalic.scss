@@ -1,0 +1,8 @@
+/* BEGIN Black */
+@font-face {
+	font-family: lobstertwobolditalic;
+	@include fontdef-woff($lobstertwoFontPath, $lobstertwoFontName, $lobstertwoFontVersion, "bolditalic");
+	font-weight: 900;
+	font-style: normal;
+}
+/* END black */

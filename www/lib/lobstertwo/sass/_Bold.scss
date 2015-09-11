@@ -1,0 +1,14 @@
+/* BEGIN Bold */
+@font-face {
+	font-family: lobstertwobold;
+	@include fontdef-woff($lobstertwoFontPath, $lobstertwoFontName, $lobstertwoFontVersion, "bold");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: lobstertwobold;
+	@include fontdef-woff($lobstertwoFontPath, $lobstertwoFontName, $lobstertwoFontVersion, "bold");
+	font-weight: bold;
+	font-style: normal;
+}
+/* END bold */

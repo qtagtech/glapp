@@ -1,90 +1,103 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
+angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer','ionMdInput'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Form data for the login modal
-    $scope.loginData = {};
-    $scope.isExpanded = false;
-    $scope.hasHeaderFabLeft = false;
-    $scope.hasHeaderFabRight = false;
+    .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading) {
+        // Form data for the login modal
+        $scope.loginData = {};
+        $scope.isExpanded = false;
+        $scope.hasHeaderFabLeft = false;
+        $scope.hasHeaderFabRight = false;
 
-    var navIcons = document.getElementsByClassName('ion-navicon');
-    for (var i = 0; i < navIcons.length; i++) {
-        navIcons.addEventListener('click', function() {
-            this.classList.toggle('active');
-        });
-    }
+        var navIcons = document.getElementsByClassName('ion-navicon');
+        for (var i = 0; i < navIcons.length; i++) {
+            navIcons.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        }
 
-    ////////////////////////////////////////
-    // Layout Methods
-    ////////////////////////////////////////
+        ////////////////////////////////////////
+        // Layout Methods
+        ////////////////////////////////////////
 
-    $scope.hideNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
-    };
+        $scope.hideNavBar = function() {
+            document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
+        };
 
-    $scope.showNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
-    };
+        $scope.showNavBar = function() {
+            document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
+        };
+        $scope.hideRainbow = function() {
+            document.getElementsByClassName('rainbow')[0].style.display = 'none';
+        };
 
-    $scope.noHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
+        $scope.showRainbow = function() {
+            document.getElementsByClassName('rainbow')[0].style.display = 'block';
+        };
+
+        $scope.noHeader = function() {
+            var content = document.getElementsByTagName('ion-content');
+            for (var i = 0; i < content.length; i++) {
+                if (content[i].classList.contains('has-header')) {
+                    content[i].classList.toggle('has-header');
+                }
             }
-        }
-    };
+        };
 
-    $scope.setExpanded = function(bool) {
-        $scope.isExpanded = bool;
-    };
+        $scope.setExpanded = function(bool) {
+            $scope.isExpanded = bool;
+        };
 
-    $scope.setHeaderFab = function(location) {
-        var hasHeaderFabLeft = false;
-        var hasHeaderFabRight = false;
+        $scope.setHeaderFab = function(location) {
+            var hasHeaderFabLeft = false;
+            var hasHeaderFabRight = false;
 
-        switch (location) {
-            case 'left':
-                hasHeaderFabLeft = true;
-                break;
-            case 'right':
-                hasHeaderFabRight = true;
-                break;
-        }
-
-        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
-        $scope.hasHeaderFabRight = hasHeaderFabRight;
-    };
-
-    $scope.hasHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (!content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
+            switch (location) {
+                case 'left':
+                    hasHeaderFabLeft = true;
+                    break;
+                case 'right':
+                    hasHeaderFabRight = true;
+                    break;
             }
+
+            $scope.hasHeaderFabLeft = hasHeaderFabLeft;
+            $scope.hasHeaderFabRight = hasHeaderFabRight;
+        };
+
+        $scope.hasHeader = function() {
+            var content = document.getElementsByTagName('ion-content');
+            for (var i = 0; i < content.length; i++) {
+                if (!content[i].classList.contains('has-header')) {
+                    content[i].classList.toggle('has-header');
+                }
+            }
+
+        };
+
+        $scope.hideHeader = function() {
+            $scope.hideNavBar();
+            $scope.noHeader();
+        };
+
+        $scope.showHeader = function() {
+            $scope.showNavBar();
+            $scope.hasHeader();
+        };
+
+        $scope.clearFabs = function() {
+            var fabs = document.getElementsByClassName('button-fab');
+            if (fabs.length && fabs.length > 1) {
+                fabs[0].remove();
+            }
+        };
+
+        $scope.loading = function() {
+            $ionicLoading.show({
+                template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
+            });
         }
-
-    };
-
-    $scope.hideHeader = function() {
-        $scope.hideNavBar();
-        $scope.noHeader();
-    };
-
-    $scope.showHeader = function() {
-        $scope.showNavBar();
-        $scope.hasHeader();
-    };
-
-    $scope.clearFabs = function() {
-        var fabs = document.getElementsByClassName('button-fab');
-        if (fabs.length && fabs.length > 1) {
-            fabs[0].remove();
-        }
-    };
 
         $timeout(function(){
             ionicMaterialMotion.blinds({
@@ -92,85 +105,85 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
             });
         },200);
 
-})
+    })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
-   $scope.$parent.clearFabs();
-    $timeout(function() {
-        $scope.$parent.hideHeader();
-    }, 0);
-    ionicMaterialInk.displayEffect();
-})
+    .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+        $scope.$parent.clearFabs();
+        $timeout(function() {
+            $scope.$parent.hideHeader();
+        }, 0);
+        ionicMaterialInk.displayEffect();
+    })
 
-.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.$parent.setHeaderFab('left');
+    .controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+        // Set Header
+        $scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.$parent.setHeaderFab('left');
 
-    // Delay expansion
-    $timeout(function() {
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(true);
-    }, 300);
+        // Delay expansion
+        $timeout(function() {
+            $scope.isExpanded = true;
+            $scope.$parent.setExpanded(true);
+        }, 300);
 
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
+        // Set Motion
+        ionicMaterialMotion.fadeSlideInRight();
 
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-})
+        // Set Ink
+        ionicMaterialInk.displayEffect();
+    })
 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false)
+    .controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+        // Set Header
+        $scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.isExpanded = false;
+        $scope.$parent.setExpanded(false);
+        $scope.$parent.setHeaderFab(false)
 
-    // Set Motion
-    $timeout(function() {//
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
+        // Set Motion
+        $timeout(function() {//
+            ionicMaterialMotion.slideUp({
+                selector: '.slide-up'
+            });
+        }, 300);
 
 
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-})
-
-.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab('right');
 
         $timeout(function() {
-            ionicMaterialMotion.fadeSlideIn({
-                selector: '.animate-fade-slide-in .item'
+            ionicMaterialMotion.fadeSlideInRight({
+                startVelocity: 3000
             });
-        }, 200);
+        }, 700);
 
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-})
+        // Set Ink
+        ionicMaterialInk.displayEffect();
+    })
 
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicModal, ionicMaterialInk, ionicMaterialMotion) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
+    .controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+        $scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+        $scope.$parent.setHeaderFab('left');
+
+        $timeout(function() {
+            ionicMaterialMotion.slideUp({
+                selector: '.animate-pan-in-left .item'
+            });
+        }, 700);
+
+        // Activate ink for controller
+        ionicMaterialInk.displayEffect();
+    })
+
+    .controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicModal, ionicMaterialInk, ionicMaterialMotion) {
+        $scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+        $scope.$parent.setHeaderFab(false);
         $scope.product = {
             name: "Prueba 1",
             price: "15900"
@@ -207,17 +220,17 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
             // Execute action
         });
 
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+        // Activate ink for controller
+        ionicMaterialInk.displayEffect();
 
-    ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-    });
+        ionicMaterialMotion.pushDown({
+            selector: '.push-down'
+        });
+        ionicMaterialMotion.fadeSlideInRight({
+            selector: '.animate-fade-slide-in .item'
+        });
 
-})
+    })
 
     .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate,$ionicPopup, $timeout, $window ,ionicMaterialInk, ionicMaterialMotion) {
 
@@ -248,26 +261,26 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
         // Called to navigate to the main app
         $scope.startApp = function() {
 
-                var confirmPopup = $ionicPopup.confirm({
-                    title: '&iquest;Deseas personalizar tu experiencia?',
-                    template: 'Cu&eacute;ntanos qu&eacute; te enamora y as&iacute; podremos darte mejores recomendaciones.',
-                    buttons: [
-                        { text: '<i class="icon ion-close "></i>',
+            var confirmPopup = $ionicPopup.confirm({
+                title: '&iquest;Deseas personalizar tu experiencia?',
+                template: 'Cu&eacute;ntanos qu&eacute; te enamora y as&iacute; podremos darte mejores recomendaciones.',
+                buttons: [
+                    { text: '<i class="icon ion-close "></i>',
                         onTap: function(e){
 
                             $state.go('app.gallery');
                         }
-                        },
-                        {
-                            text: '<i class="icon ion-ios-heart"></i>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                $state.go('physics');
-                            }
+                    },
+                    {
+                        text: '<i class="icon ion-ios-heart"></i>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            $state.go('physics');
                         }
+                    }
 
-                    ]
-                });
+                ]
+            });
 
 
             //
@@ -337,9 +350,9 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
         $scope.selectedBar = '';
 
         // just feeding in parameters for a regular div:
-       /* for(var i=1; i < 10; i++){
-            $scope.blocks.push({"shape": "box", "x": i * 10 + '%', "y": '20%', "width": "45px", "height": "45px"})
-        }*/
+        /* for(var i=1; i < 10; i++){
+         $scope.blocks.push({"shape": "box", "x": i * 10 + '%', "y": '20%', "width": "45px", "height": "45px"})
+         }*/
         for(var i=1; i <10; i++){
             $scope.blocks.push({id: i,"shape": "circle", "x": i * 15 + '%', "y": '10%', "width": "130px", "height": "130px",state: 'normal',color: get_random_color(),showing: true})
         }
@@ -377,7 +390,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
             $scope.$broadcast('timer-start');
             $scope.timerRunning = true;
             /*console.log(block);
-            console.log('Long press');*/
+             console.log('Long press');*/
         }
 
         $scope.itemOnEnd = function(block) {
@@ -399,7 +412,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
         };
 
         $scope.$on('timer-tick', function (event, args) {
-           //console.log( $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n');
+            //console.log( $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n');
         });
         $scope.$on('timer-stopped', function (event, data){
             $scope.timerRunning = false;
@@ -408,7 +421,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
                 //delete object
                 $scope.destroyMe($scope.removeBlock);
                 /*var index = $scope.blocks.indexOf($scope.removeBlock);
-                $scope.blocks.splice(index, 1);*/
+                 $scope.blocks.splice(index, 1);*/
                 //console.log('fin');
 
             }
@@ -423,14 +436,14 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
         // The directive saves a reference to the physics engine world body under the DOM element (look for 'body').
         // FYI - likewise, it saves the ref the other way if you need it (check the source code) under body - fixture - userData.
         $scope.destroyMe = function(block){
-          // Destroy the physics engine body. Fetch the click target from the mouse event target.
-          var theDOMElement = document.getElementById(block.id);
-          var thePhysicsWorldBody = theDOMElement.body;
-          nuiWorld.world.DestroyBody( thePhysicsWorldBody );
-          // Destroy the corresponding DOM element. In Angular world, we'll remove the Array item that creates the DOM element via ng-repeat in this demo. Angular will take care of removing the DOM element because of data-binding.
-          var pos = $scope.blocks.indexOf(block);
-          $scope.blocks.splice(pos,1);
-          $scope.removeBlock = null;
+            // Destroy the physics engine body. Fetch the click target from the mouse event target.
+            var theDOMElement = document.getElementById(block.id);
+            var thePhysicsWorldBody = theDOMElement.body;
+            nuiWorld.world.DestroyBody( thePhysicsWorldBody );
+            // Destroy the corresponding DOM element. In Angular world, we'll remove the Array item that creates the DOM element via ng-repeat in this demo. Angular will take care of removing the DOM element because of data-binding.
+            var pos = $scope.blocks.indexOf(block);
+            $scope.blocks.splice(pos,1);
+            $scope.removeBlock = null;
         }
         $scope.showAlert = function() {
             var confirmPopup = $ionicPopup.alert({
@@ -451,20 +464,20 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer'])
 
 
         /*$scope.showHelp = function(){
-            var confirmPopup = $ionicPopup.alert({
-                title: 'Ayuda',
-                subtitle: 'En esta ventana puedes escoger qu&eacute; te enamora.',
-                template: '<p>Cada &iacute;rculo representa un producto o un servicio que ofrecemos. <br />Para indicar que alguno te gusta, presiona el c&iacute;rculo correspondiente una vez. Si te enamora, es decir, te gusta mucho, presi&oacute;nalo de nuevo.<br />Si por el contrario, alguno no te gusta, presi&oacute;nalo y mantenlo as&iacute; hasta que el contador termine y se eliminar&aacute;</p>',
-                buttons: [
-                    { text: '!Listo!',
-                        onTap: function(e){
+         var confirmPopup = $ionicPopup.alert({
+         title: 'Ayuda',
+         subtitle: 'En esta ventana puedes escoger qu&eacute; te enamora.',
+         template: '<p>Cada &iacute;rculo representa un producto o un servicio que ofrecemos. <br />Para indicar que alguno te gusta, presiona el c&iacute;rculo correspondiente una vez. Si te enamora, es decir, te gusta mucho, presi&oacute;nalo de nuevo.<br />Si por el contrario, alguno no te gusta, presi&oacute;nalo y mantenlo as&iacute; hasta que el contador termine y se eliminar&aacute;</p>',
+         buttons: [
+         { text: '!Listo!',
+         onTap: function(e){
 
 
-                        }
-                    }
-                ]
-            });
-        };*/
+         }
+         }
+         ]
+         });
+         };*/
 
 
         function rand(min, max) {

@@ -1,5 +1,6 @@
 <ion-pane style="background: url(img/tastes1.jpg) center center; background-size: cover;">
     <h3><timer ng-show="timerRunning" autostart="false" interval="1000" countdown="4">{{countdown}}</timer></h3>
+
         <ion-header-bar class="bar-energized">
 
             <h1 class="title">Personaliza tu experiencia <i ng-click="showAlert()" class="icon ion-ios-help-outline bigicon"></i></h1>
@@ -44,6 +45,10 @@
             </div>
 
         </ion-content>
+  <div class="button-bar intro-buttons">
+    <button style="z-index: 99999999" class="button button-small button-border icon-left ion-close button-assertive-900" ng-click="startApp()">Saltar</button>
+    <button style="z-index: 99999999" class="button button-small button-border icon-left ion-heart button-positive-900" ng-click="startApp()">&iexcl;Comenzar!</button>
+  </div>
     </ion-pane>
 
 
