@@ -4,7 +4,7 @@
             <div class="content">
                 <div class="list condensed-space no-padding animate-blinds">
                     <div ng-repeat="category in categories" class="card">
-                        <a class="item clear-bg ink item-bg-image waves-effect waves-button waves-light has-mask-reverse" >
+                        <a ui-sref="open.category({ category: category })" class="item clear-bg ink item-bg-image waves-effect waves-button waves-light has-mask-reverse" >
                             <h2>{{category.name}}</h2>
                             <p>{{category.description}}</p>
                             <img class="ink" src="{{category.image.url}}">

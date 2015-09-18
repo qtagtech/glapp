@@ -88,7 +88,9 @@ angular.module('user.controllers', ['ngOpenFB'])
         };
     }])
     .controller('SignUpController', function ($state, $scope, UserService,$ionicLoading,$ionicModal,$stateParams, $timeout, $ionicModal, ionicMaterialInk, ionicMaterialMotion,ngFB,StateData) {
-
+        UserService.currentUser().then(function(){
+            $state.go('open.gallery',{},{reload:true});
+        });
         $scope.creds = {};
         $scope.error = {};
         $scope.success = {};
@@ -116,7 +118,7 @@ angular.module('user.controllers', ['ngOpenFB'])
                 //alert("Success Creating User Account ");
                 $scope.success.message = "You are now Signed Up and Logged In.";
                 //$state.go('app.tab.list', {});
-                $state.go($scope.previous_state);
+                $state.go($scope.previous_state,{},{reload:true});
 
             }, function (_error) {
                 console.log(_error);
@@ -173,7 +175,7 @@ angular.module('user.controllers', ['ngOpenFB'])
                                     //alert("Success Creating User Account ");
                                     $scope.success.message = "You are now Signed Up";
 
-                                    $state.go($scope.previous_state);
+                                    $state.go($scope.previous_state,{},{reload:true});
 
                                 }, function (_error) {
                                     $ionicLoading.hide();
@@ -213,7 +215,7 @@ angular.module('user.controllers', ['ngOpenFB'])
 
                                                         }else{
                                                             UserService.login(creds.email,security.get("value")).then(function(_response){
-                                                                $state.go($scope.previous_state);
+                                                                $state.go($scope.previous_state),{},{reload:true};
                                                             },function(_error){
                                                                 console.log("Force Login Error");
                                                                 console.log(_error);
@@ -289,7 +291,7 @@ angular.module('user.controllers', ['ngOpenFB'])
                     $scope.success.message = "Login successful.";
 
                     // transition to next state
-                    $state.go($scope.previous_state);
+                    $state.go($scope.previous_state,{},{reload:true});
 
                 }, function (_error) {
                     $ionicLoading.hide();

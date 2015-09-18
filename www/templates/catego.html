@@ -1,0 +1,31 @@
+<ion-view  style="background: url(img/modal-bg.jpg) center center; background-size: cover;" title='<img class="title-image" src="../img/logo_rectangle.png" />' />'>
+<ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" scroll="true">
+    <div class="ionic">
+        <div class="content">
+            <h2 class="category-title">Accesorios</h2>
+            <td-cards>
+                <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+
+                    <div class="image ink">
+                        <div class="card-title">
+                            <h2>Prueba de titutl</h2>
+                            <p>Esta es una descripción del producto que se quiere comprar el usuario</p>
+                        </div>
+                        <div class="no-text">No Me Gusta</div>
+                        <img ng-src="{{card.image}}">
+                        <div class="yes-text">&iexcl;Me Gusta!</div>
+
+                          <span class="horizontal-buttons card-buttons">
+                            <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-android-person-add pull-right text-white"></button>
+                            <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-android-cart pull-right text-white"></button>
+                            <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-heart pull-right text-white"></button>
+                          </span>
+                    </div>
+                </td-card>
+                <div class="padding mid-bar z1 pink-bg">
+                    <h2 class="padding ink" style="text-align: center;" ng-click="showAlert()"><i class="icon ion-help-circled ink"></i> Ayuda</h2>
+                </div>
+        </div>
+    </div>
+</ion-content>
+</ion-view>

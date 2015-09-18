@@ -8454,6 +8454,111 @@ ion-scroll {
 .button-pink {
   background: #e91e63 !important; }
 
+td-cards {
+  display: block; }
+
+td-card {
+  position: absolute;
+  left: 50%;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-left: -150px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #999;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 6px; }
+
+/*
+td-card.card-0 {
+  -webkit-transform: translate3d(0, 0px, 0);
+  transform: translate3d(0, 0px, 0);
+  top: 0px;
+  z-index: 10;
+}
+td-card.card-1 {
+  -webkit-transform: translate3d(0, 4px, 0);
+  transform: translate3d(0, 4px, 0);
+  z-index: 9;
+}
+td-card.card-2 {
+  -webkit-transform: translate3d(0, 8px, 0);
+  transform: translate3d(0, 8px, 0);
+  z-index: 8;
+}
+*/
+td-card .image {
+  position: relative; }
+
+td-card img {
+  max-width: 100%;
+  border-radius: 6px; }
+
+.yes-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  color: #e65100;
+  opacity: 0; }
+
+.no-text {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #e65100;
+  opacity: 0; }
+
+.fade {
+  -webkit-transition: 0.2s opacity linear;
+  transition: 0.2s opacity linear;
+  opacity: 0; }
+
+.category-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  font-family: exobold;
+  text-shadow: 0px 0px 0px #fff, 4px 4px 0px rgba(0, 0, 0, 0.15); }
+
+.card-buttons {
+  width: 100% !important;
+  z-index: 9999999; }
+
+.card-title {
+  position: absolute;
+  display: block;
+  width: 90%;
+  font-family: exobold;
+  color: #ff9800;
+  background: #006064;
+  opacity: .8;
+  top: 30px;
+  left: 10px;
+  text-align: left;
+  padding: 5px; }
+
+.card-title h2 {
+  font-family: exoregular !important;
+  color: #ff9800 !important;
+  text-shadow: 0px 0px 0px #fff, 4px 4px 0px rgba(0, 0, 0, 0.15); }
+
+ion-list ion-item {
+  font-size: 1.2em !important;
+  font-family: exoregular !important; }
+
+.submenu {
+  font-size: 0.9em !important;
+  font-family: exothin !important; }
+
+.put-away {
+  /*position: relative;
+top: auto;
+left: -100%;*/ }
+
 /*
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

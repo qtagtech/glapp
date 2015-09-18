@@ -9,12 +9,14 @@ angular.module('starter', ['ionic',
     'starter.directives',
     'starter.animations',
     'starter.filters',
+    'starter.services',
     'user.controllers',
     'user.services',
     'ionic-material',
     'ionMdInput',
     'ngOpenFB',
-    'angular-wurfl-image-tailor'
+    'angular-wurfl-image-tailor',
+    'ionic.contrib.ui.tinderCards'
     ])
 
 /**
@@ -67,7 +69,7 @@ angular.module('starter', ['ionic',
             .state('app', {
                 url: '/app',
                 abstract: true,
-                templateUrl: 'templates/menu.html',
+                templateUrl: 'templates/open.html',
                 controller: 'AppCtrl',
                 resolve: {
                     user: function (UserService) {
@@ -201,6 +203,26 @@ angular.module('starter', ['ionic',
                     'menuContent': {
                         templateUrl: 'templates/categories.html',
                         controller: 'CategoriesCtrl'
+                    },
+                    'fabContent': {
+                        template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-balanced-900 drop"><i class="icon ion-android-cart"></i></button>',
+                        controller: function ($timeout) {
+                            $timeout(function () {
+                                document.getElementById('fab-gallery').classList.toggle('on');
+                            }, 600);
+                        }
+                    }
+                }
+            })
+          .state('open.category', {
+                url: '/category',
+                params: {
+                  category: {},
+                },
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/catego.html',
+                        controller: 'CategoryCtrl'
                     },
                     'fabContent': {
                         template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-balanced-900 drop"><i class="icon ion-android-cart"></i></button>',
