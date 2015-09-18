@@ -147,7 +147,7 @@ angular.module('nui.ionic.box2d', [])
 
 		            var width = (attrs.nuiWidth) ? (_parseNumber(attrs.nuiWidth, $window.innerWidth)/2) : (elem[0].offsetWidth/2);
 		            var height = (attrs.nuiHeight) ? (_parseNumber(attrs.nuiHeight, $window.innerHeight)/2) : (elem[0].offsetHeight/2);
-					if(height == 0 || width == 0)
+					if(height == 0||width == 0)//
 						throw new Error("Element dimensions are not set early enough. Do it by a class or style (ng-style and ng-class may be not set yet) -- or nui-width and nui-height attributes. " + elem[0]);
 
 		            var x = (attrs.nuiX) ? (_parseNumber(attrs.nuiX, $window.innerWidth)) : (elem[0].getBoundingClientRect().left + width);

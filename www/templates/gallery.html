@@ -1,74 +1,175 @@
-<ion-view view-title="BISHOMEN">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="list half">
+<ion-view style="background: url(img/modal-bg.jpg) center center; background-size: cover;" title='<img class="title-image" src="../img/logo_rectangle.png" />'>
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" scroll="true">
+        <div class="my-block">
+            <div class="list condensed-space no-padding animate-blinds">
+                <div class="card dark-bg ">
+                    <a class="item clear-bg item-bg-image waves-effect waves-button waves-light has-mask-reverse">
+                        <h2>{{products[0].name}}</h2>
+                        <p>{{products[0].description}}</p>
+                        <img src="{{products[0].image.url}}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="my-block">
+            <div class="list half">
+                <div  ng-repeat="product in products | limitTo:2:1" class="card card-gallery item item-text-wrap">
+                    <div ng-click="openModal($event, $index + 1,product)" class="ink title-bg">
+                        <h2>{{product.name}}</h2>
+                        <img ng-click="openModal($event)" class="full-image" src="{{product.image.url}}">
+                    </div>
+                    <div  class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item stable-bg assertive">
+                            <i  class="icon ion-heart" ng-click="freeLike($event)"></i>
+                            4
+                        </a>
+                        <!--<a class="tab-item stable-bg positive-900">
+                            <i class="icon ion-chatbubbles"></i>
+                            2
+                        </a>-->
+                        <a class="tab-item calm-bg stable-900"><i class="icon ion-android-cart"></i>{{product.price}}</a>
+                    </div>
+                </div>
+                <!--<div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
+                    <div class="ink dark-bg">
+                        <h2>Hmm. Hope nobody destroys this!</h2>
+                        <img class="full-image" src="img/sansa-snowcastle.png">
+                    </div>
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item stable-bg assertive">
+                            <i class="icon ion-heart"></i>
+                            6
+                        </a>
+                        <a class="tab-item stable-bg positive-900">
+                            <i class="icon ion-chatbubbles"></i>
+                            1
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+            <div class="list half">
+              <div  ng-repeat="product in (products | limitTo:2:3)" class="card card-gallery item item-text-wrap" ng-click="removeItem($index)">
+                <div ng-click="openModal($event, $index + 3,product)" class="ink title-bg">
+                  <h2>{{product.name}}</h2>
+                  <img ng-click="openModal($event)" class="full-image" src="{{product.image.url}}">
+                </div>
+                <div  class="item tabs tabs-secondary tabs-icon-left">
+                  <a class="tab-item stable-bg assertive">
+                    <i  class="icon ion-heart" ng-click="freeLike($event)"></i>
+                    4
+                  </a>
+                  <!--<a class="tab-item stable-bg positive-900">
+                      <i class="icon ion-chatbubbles"></i>
+                      2
+                  </a>-->
+                  <a class="tab-item calm-bg stable-900"><i class="icon ion-android-cart"></i>{{product.price}}</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="my-block">
+            <div class="list condensed-space no-padding animate-blinds">
+                <div class="card dark-bg ">
+                    <a class="item clear-bg item-bg-image waves-effect waves-button waves-light has-mask-reverse">
+                        <h2>{{products[5].name}}</h2>
+                        <p>{{products[5].description}}</p>
+                        <img src="{{products[5].image.url}}">
+                    </a>
+                </div>
+                <div class="card energized-bg ">
+                    <a class="item clear-bg item-bg-image waves-effect waves-button waves-light has-mask-reverse">
+                      <h2>{{products[6].name}}</h2>
+                      <p>{{products[6].description}}</p>
+                      <img src="{{products[6].image.url}}">
+                    </a>
+                </div>
 
-            <div ng-click="openModal()" class="card card-gallery item item-text-wrap">
-                <div class="ink dark-bg">
-                    <h2>Where's Elsa?</h2>
-                    <img class="full-image" src="img/sansa-snowcastle3.jpg">
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item stable-bg assertive">
-                        <i class="icon ion-heart"></i>
-                        4
-                    </a>
-                    <a class="tab-item stable-bg positive-900">
-                        <i class="icon ion-chatbubbles"></i>
-                        2
-                    </a>
-                    <a class="tab-item calm-bg stable-900"><i class="icon ion-android-cart"></i>$3.200</a>
-                </div>
-            </div>
-            <div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
-                <div class="ink dark-bg">
-                    <h2>Hmm. Hope nobody destroys this!</h2>
-                    <img class="full-image" src="img/sansa-snowcastle.png">
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item stable-bg assertive">
-                        <i class="icon ion-heart"></i>
-                        6
-                    </a>
-                    <a class="tab-item stable-bg positive-900">
-                        <i class="icon ion-chatbubbles"></i>
-                        1
-                    </a>
-                </div>
             </div>
         </div>
-        <div class="list half">
-            <div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
-                <div class="ink dark-bg">
-                    <h2>Making Olaf a House</h2>
-                    <img class="full-image" src="img/sansa-snowcastle2.jpg">
+        <div class="my-block" style="overflow-x: hidden">
+            <ion-scroll direction="x" zooming="false" delegate-handle="horizontal" horizontal-scroll-fix="mainScroll" >
+                <!--<p>Lorem ipsum dolor sit am consectetur adipisicing elit. Soluta suscipit doloremque exercitationem vero placeat ducimus est quam perspiciatis beatae venim quos at minus eos optio dolore iure amet totam officia.<br/>Lorem ipsum dolor sit am consectetur adipisicing elit. Soluta suscipit doloremque exercitationem vero placeat ducimus est quam perspiciatis beatae venim quos at minus eos optio dolore iure amet totam officia.</p>-->
+            <span ng-repeat="product in products | limitTo:10:7" class="horizontal-product">
+                <div class="horizontal-title">
+                    <h2>{{product.name}}</h2>
+                    <div>{{product.description}}</div>
                 </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item stable-bg assertive">
-                        <i class="icon ion-heart"></i>
-                        22
-                    </a>
-                    <a class="tab-item stable-bg positive-900">
-                        <i class="icon ion-chatbubbles"></i>
-                        9
-                    </a>
-                </div>
-            </div>
-            <div ui-sref="app.profile" class="card card-gallery item item-text-wrap">
-                <div class="ink dark-bg">
-                    <h2>ohai!</h2>
-                    <img class="full-image" src="img/sansa-snowcastle4.jpg">
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item stable-bg assertive">
-                        <i class="icon ion-heart"></i>
-                        8
-                    </a>
-                    <a class="tab-item stable-bg positive-900">
-                        <i class="icon ion-chatbubbles"></i>
-                        0
-                    </a>
-                </div>
+
+                <img-wit src="{{trustSrc(product.image.url)}}" pc="60"> </img-wit>
+                <!--<img src="{{product.image.url}}">-->
+                <span class="horizontal-buttons">
+                    <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-android-person-add pull-right text-white"></button>
+                    <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-android-cart pull-right text-white"></button>
+                    <button class="button button-large button-clear flat waves-effect waves-button waves-light icon ion-heart pull-right text-white"></button>
+                </span>
+
+            </span>
+            </ion-scroll>
+        </div>
+        <div class="my-block">
+            <div class="list animate-fade-slide-in-right">
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-briefcase pull-left"></i>
+                    <h2>Accesorios</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-person pull-left"></i>
+                    <h2>Cabello</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon  ion-man pull-left"></i>
+                    <h2>Cremas y Jabones</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-android-happy pull-left"></i>
+                    <h2>Cuidado Facial</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-wineglass pull-left"></i>
+                    <h2>Entretenimiento</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-medkit pull-left"></i>
+                    <h2>Salud Sexual</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-tshirt  pull-left"></i>
+                    <h2>Ropa</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-iphone  pull-left"></i>
+                    <h2>Tecnolog&iacute;a</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+                <a href="" class="item item-avatar item-icon-right">
+                    <i class="item-avatar custom-icon icon ion-more  pull-left"></i>
+                    <h2>Todas las Categor&iacute;as</h2>
+                    <p></p>
+                    <i class="icon ion-ios-arrow-forward muted"></i>
+                </a>
+
             </div>
         </div>
+
+
     </ion-content>
 </ion-view>
+<div class="button-bar signup-bar" ng-show="signup">
+    <button class="button button-special button-save button-small button-assertive light-bg icon-left ion-ios-email-outline waves-effect waves-button waves-light" ng-click="signUpUser()"><span>Guardar</span></button>
+    <button class="button button-special button-small button-login  button-positive light-bg icon-left ion-log-in waves-effect waves-button waves-light" ng-click="openModal()"><span>Ya tengo cuenta</span></button>
+</div>

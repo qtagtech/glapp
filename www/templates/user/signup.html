@@ -1,6 +1,6 @@
 
-<ion-view style="background-image: url('../img/movingback.jpg');">
-    <ion-content class="back" scroll="true" >
+<ion-view style="background-image: url('../img/movingback.jpg');" >
+    <ion-content class="back" id="signup_window" scroll="true" ng-show="signup">
         <div class="ionic login" style="background-image: url('../img/movingback.jpg');" ng-app="login">
             <div class="hero no-header flat ">
                 <div class="content animate-fade-slide-in">
@@ -10,7 +10,7 @@
                 </div>
             </div>
              <div class="facebook-login animate-slide-up">
-                 <button class="facebook button button-small icon-right ion-social-facebook  button-positive light-bg waves-effect waves-button waves-light" style="background-color:#3C568B ">Ingresa <br> con facebook</button>
+                 <button ng-click="fbLogin()" class="facebook button button-small icon-right ion-social-facebook  button-positive light-bg waves-effect waves-button waves-light" style="background-color:#3C568B ">Ingresa <br> con facebook</button>
              </div>
             <div class="list animate-ripple">
                 <label placeholder="Nombre" highlight-color="cyan-500" type="text" class="item item-input item-md-label"><input ng-model="creds.first_name" type="text"><span class="input-label">Nombre</span><div class="highlight highlight-balanced"></div></label>
@@ -18,15 +18,18 @@
                 <label placeholder="Email" highlight-color="cyan-500" type="text" class="item item-input item-md-label"><input ng-model="creds.email" type="text"><span class="input-label">Email</span><div class="highlight highlight-balanced"></div></label>
                 <label placeholder="Password" highlight-color="energized" type="password" class="item item-input item-md-label"><input ng-model="creds.password" type="password"><span class="input-label">Password</span><div class="highlight highlight-energized"></div></label>
             </div>
-            <div class="assertive" ng-show="error.message">{{error.message}}</div>
+            <div class="assertive custom-assertive" ng-show="message">{{message}}</div>
+            <button class="dynamic-login button button-small button-assertive waves-effect waves-button waves-light" ng-show="message">Ir a Login</button>
             <!--<label placeholder="Username" highlight-color="balanced" type="text" class=" item-input item-md-label"><input type="text"><span class="input-label">Username</span><div class="highlight highlight-balanced"></div></label>-->
 
 
 
         </div>
     </ion-content>
+
 </ion-view>
-<div class="button-bar signup-bar">
-    <button class="button button-small button-assertive light-bg icon-left ion-ios-email-outline waves-effect waves-button waves-light" ng-click="signUpUser()">Guardar</button>
-    <button class="button button-small  button-positive light-bg icon-left ion-social-facebook waves-effect waves-button waves-light" style="background-color:#3C568B ">Facebook</button>
+<div class="button-bar signup-bar" ng-show="signup">
+    <button class="button button-special button-save button-small button-assertive light-bg icon-left ion-ios-email-outline waves-effect waves-button waves-light" ng-click="signUpUser()"><span>Guardar</span></button>
+    <button class="button button-special button-small button-login  button-positive light-bg icon-left ion-log-in waves-effect waves-button waves-light" ng-click="openModal()"><span>Ya tengo cuenta</span></button>
 </div>
+

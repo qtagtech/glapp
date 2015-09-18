@@ -1,0 +1,17 @@
+<ion-view  title='<img class="title-image" src="../img/logo_rectangle.png" />'>
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" scroll="true">
+        <div class="ionic">
+            <div class="content">
+                <div class="list condensed-space no-padding animate-blinds">
+                    <div ng-repeat="category in categories" class="card">
+                        <a class="item clear-bg ink item-bg-image waves-effect waves-button waves-light has-mask-reverse" >
+                            <h2>{{category.name}}</h2>
+                            <p>{{category.description}}</p>
+                            <img class="ink" src="{{category.image.url}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    </ion-view>

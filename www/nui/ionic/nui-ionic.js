@@ -338,12 +338,12 @@ _parseConfig = function(config, target){
 
     if(config.nuiLimitX != null){
         target.limitX = config.nuiLimitX.split(",").map(function(x) { return _parseNumber(x, target.windowWidth) });
-        if(isNaN(target.limitX[0]) || isNaN(target.limitX[1]) || target.limitX.length!=2) throw  new Error("<nui-draggable> Check the parameters: - incorrect limit-x: '"+config.nuiLimitX+"', expecting min, max (px or % of the window WIDTH).");
+        if(isNaN(target.limitX[0]) ||isNaN(target.limitX[1]) || target.limitX.length!=2) throw  new Error("<nui-draggable> Check the parameters: - incorrect limit-x: '"+config.nuiLimitX+"', expecting min, max (px or % of the window WIDTH).");
     }
 
     if(config.nuiLimitY != null){
         target.limitY = config.nuiLimitY.split(",").map(function(y) { return _parseNumber(y, target.windowHeight) });
-        if(isNaN(target.limitY[0]) || isNaN(target.limitY[1]) || target.limitY.length!=2) throw  new Error("<nui-draggable> Check the parameters: - incorrect limit-y: '"+config.nuiLimitY+"', expecting min, max (px or % the window HEIGHT).");
+        if(isNaN(target.limitY[0]) || isNaN(target.limitY[1]) || target.limitY.length!=2) throw  new Error("<nui-draggable> Check the parameters: - incorrect limit-y: '"+config.nuiLimitY+"', expecting min, max (px or % the window HEIGHT).");
     }
 
     if(config.nuiStopsX != null)

@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-content class="back" scroll="true" id="login_window">
+        <div class="ionic login" style="background-image: url('../img/movingback.jpg');">
+            <div class="hero no-header flat ">
+                <div class="content animate-fade-slide-in">
+                    <img class="icon-logo " src="../img/icon_glapp.png">
+                    <div class="animate-blinds"><h1 class="app-logo ">Glapp</h1></div>
+
+                </div>
+            </div>
+            <div class="facebook-in-login">
+                <button ng-click="fbLogin()" class="facebook button button-small icon-right ion-social-facebook  button-positive light-bg waves-effect waves-button waves-light" style="background-color:#3C568B ">Ingresa <br> con facebook</button>
+            </div>
+            <div class="list animate-ripple">
+                <label placeholder="Email" highlight-color="cyan-500" type="text" class=" item-input item-md-label"><input ng-model="creds.login.email" type="text"><span class="input-label">Email</span><div class="highlight highlight-balanced"></div></label>
+                <label placeholder="Password" highlight-color="energized" type="password" class=" item-input item-md-label"><input ng-model="creds.login.password" type="password"><span class="input-label">Password</span><div class="highlight highlight-energized"></div></label>
+            </div>
+            <div class="forgot-buttons animate-ripple"><button class=" forgot button button-small light-bg waves-effect waves-button waves-light" ng-click="doLogin()">Entrar</button></div>
+            <div class="assertive custom-assertive" ng-show="message">{{message}}</div>
+            <pre ng-show="currentUser">{{currentUser | json}}</pre>
+            <!--<label placeholder="Username" highlight-color="balanced" type="text" class=" -input -md-label"><input type="text"><span class="input-label">Username</span><div class="highlight highlight-balanced"></div></label>-->
+
+
+
+        </div>
+    </ion-content>
+    <div class="button-bar signup-bar">
+        <button class="button button-special button-save button-small button-assertive light-bg icon-left ion-key waves-effect waves-button waves-light" ng-click=""><span>Olvid&eacute; mi password</span></button>
+        <button class="button button-special button-small button-login  button-positive light-bg icon-left ion-log-in waves-effect waves-button waves-light" ng-click="closeModal()"><span>Soy Nuevo</span></button>
+    </div>
+</ion-modal-view>

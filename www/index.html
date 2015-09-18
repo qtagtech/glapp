@@ -1,51 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-    <!-- add touch emulation hold SHIFT-key while using the mouse -->
-    <!-- Commented out: breaks Ionic select <script src="http://cdn.rawgit.com/hammerjs/touchemulator/master/touch-emulator.js"></script>
-    <script>TouchEmulator()</script>-->
-    <link href="css/ionic.app.css" rel="stylesheet">
-    <link href="lib/ion-md-input/css/ion-md-input.min.css" rel="stylesheet">
-    <link href="lib/Waves/dist/waves.min.css" rel="stylesheet">
-    <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
+<he
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<title></title>
+<!-- add touch emulation hold SHIFT-key while using the mouse -->
+<!-- Commented out: breaks Ionic select <script src="http://cdn.rawgit.com/hammerjs/touchemulator/master/touch-emulator.js"></script>
+<script>TouchEmulator()</script>-->
+<link href="css/ionic.app.css" rel="stylesheet">
+<link href="lib/ion-md-input/css/ion-md-input.min.css" rel="stylesheet">
+<link href="lib/Waves/dist/waves.min.css" rel="stylesheet">
+<link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
 
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
-    <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
-    <script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
-    <script src="lib/momentjs/min/moment-with-locales.js"></script>
-    <script src="lib/momentjs/min/locales.min.js"></script>
-    <script src="lib/humanize-duration/humanize-duration.js"></script>
-    <script src="lib/angular-timer/dist/angular-timer.min.js"></script>
-    <script src="lib/Waves/dist/waves.min.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-    <!-- EXTRENAL JS -->
-    <!-- ANIMATIONS: Velocity is being tested for <nui-touchable> and <nui-tiltable> animations -->
-    <script src="lib/velocity/velocity.min.js"></script>
-    <script src="lib/velocity/velocity.ui.min.js"></script>
-    <!-- 2D PHYSCIS ENGINE: LiquidFun. Box2dWeb is smaller, but LiquidFun is more fun. -->
-    <!-- Physics is for calculation only. Visualizing the results is plain animation of the DOM. -->
-    <!-- Velocity could be (but is not) used for <nui-body> LiquidFun calculated transtions, plain CSS transforms are being tested there instead. -->
-    <script src="lib/box2d/liquidfun.js"></script>
-    <!-- DEVELOPMENT VERSION OF NUI -->
-    <script src="nui/ionic/nui-ionic.js"></script>
-    <script src="nui/ionic/box2d/nui-ionic-box2d.js"></script>
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/app/controllers.js"></script>
-    <script src="js/app/directives.js"></script>
-    <script src="js/user/controllers.js"></script>
-    <script src="js/user/services.js"></script>
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
+<script src="lib/ionic-material/dist/ionic.material.min.js"></script>
+<script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
+<script src="lib/momentjs/min/moment-with-locales.js"></script>
+<script src="lib/momentjs/min/locales.min.js"></script>
+<script src="lib/humanize-duration/humanize-duration.js"></script>
+<script src="lib/angular-timer/dist/angular-timer.min.js"></script>
+<script src="lib/angular-wurfl-image-tailor/src/angular-wurfl-image-tailor.js"></script>
+
+
+
+<!-- cordova script (this will be a 404 during development) -->
+<script src="cordova.js"></script>
+<!-- EXTRENAL JS -->
+<!-- ANIMATIONS: Velocity is being tested for <nui-touchable> and <nui-tiltable> animations -->
+<script src="lib/velocity/velocity.min.js"></script>
+<script src="lib/velocity/velocity.ui.min.js"></script>
+<!-- 2D PHYSCIS ENGINE: LiquidFun. Box2dWeb is smaller, but LiquidFun is more fun. -->
+<!-- Physics is for calculation only. Visualizing the results is plain animation of the DOM. -->
+<!-- Velocity could be (but is not) used for <nui-body> LiquidFun calculated transtions, plain CSS transforms are being tested there instead. -->
+<script src="lib/box2d/liquidfun.js"></script>
+<!-- DEVELOPMENT VERSION OF NUI -->
+<script src="nui/ionic/nui-ionic.js"></script>
+<script src="nui/ionic/box2d/nui-ionic-box2d.js"></script>
+
+<!-- Facebook-->
+
+<script src="js/facebook/openfb.js"></script>
+<script src="js/facebook/ngopenfb.js"></script>
+<!-- your app's js -->
+<script src="js/app.js"></script>
+<script src="js/app/controllers.js"></script>
+<script src="js/app/directives.js"></script>
+<script src="js/user/controllers.js"></script>
+<script src="js/user/services.js"></script>
+<script src="js/app/animations.js"></script>
+<script src="js/app/filters.js"></script>
 </head>
 <body ng-app="starter">
-    <ion-nav-view></ion-nav-view>
+<ion-nav-view></ion-nav-view>
+<script src="lib/Waves/dist/waves.min.js"></script>
+<script src="lib/move/move.min.js"></script>
 </body>
 <script>
-    Waves.init();
+
 </script>
 </html>
