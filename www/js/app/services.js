@@ -1,148 +1,43 @@
 angular.module('starter.services', [])
 
-    .factory('categories', function() {
-        // Might use a resource here that returns a JSON array
+    .factory('categories', function($q,$http,ParseConfiguration) {
+        var categories = null;
+        var parseInitialized = false;
 
-        // Some fake testing data
-        var categories = [{
-            id: 0,
-            name: 'Accesorios',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        }, {
-            id: 0,
-            name: 'Cabello',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Cremas y Jabones',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Cuidado Facial',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Entretenimiento',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },];
+        function LoadData() {
+            var defer = $q.defer();
+            /*$http.get('http://demo6537529.mockable.io/categories').success(function (data) {
+                categories = data;
+                defer.resolve();
+            });
+            return defer.promise;*/
+            if (parseInitialized === false) {
+                Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey);
+                parseInitialized = true;
+                //console.log("parse initialized in init function");
+            }
+            var Category = Parse.Object.extend("Category");
+            var query = new Parse.Query(Category);
+            query.find({
+                success: function(results) {
+                    //alert("Successfully retrieved " + results.length + " scores.");
+                    // Do something with the returned Parse.Object values
+                    console.log(results);
+                    categories = results;
+                    defer.resolve();
+                },
+                error: function(error) {
+                    defer.reject({error: error.code + " " + error.message});
+                }
+            });
+
+            return defer.promise;
+        }
 
         return {
-            all: function() {
-                return categories;
-            },
-            remove: function(category) {
-                categories.splice(categories.indexOf(category), 1);
-            },
-            get: function(categoryId) {
-                for (var i = 0; i < categories.length; i++) {
-                    if (categories[i].id === parseInt(categoryId)) {
-                        return categories[i];
-                    }
-                }
-                return null;
-            }
-        };
-    })
-    .factory('vcategories', function() {
-        // Might use a resource here that returns a JSON array
-
-        // Some fake testing data
-        var categories = [{
-            id: 0,
-            name: 'Accesorios',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        }, {
-            id: 0,
-            name: 'Cabello',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Cremas y Jabones',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Cuidado Facial',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },{
-            id: 0,
-            name: 'Entretenimiento',
-            description: 'You on your way?',
-            image:{
-                id: 0,
-                title: 'Imagen Accesorios',
-                url: 'url'
-            },
-            parent: {}
-        },];
-
-        return {
-            all: function() {
-                return categories;
-            },
-            remove: function(category) {
-                categories.splice(categories.indexOf(category), 1);
-            },
-            get: function(categoryId) {
-                for (var i = 0; i < categories.length; i++) {
-                    if (categories[i].id === parseInt(categoryId)) {
-                        return categories[i];
-                    }
-                }
-                return null;
-            }
-        };
+            GetData: function () { return categories ; },
+            LoadData:LoadData
+        }
     });
+
+

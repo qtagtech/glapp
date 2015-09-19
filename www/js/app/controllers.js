@@ -11,7 +11,7 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer','i
         $scope.hasHeaderFabRight = false;
         $scope.user = null;
         $scope.openCategories = false;
-        $scope.categories = categories.all();
+        $scope.categories = categories.GetData();
 
 
         UserService.init().then(function(_user){
@@ -314,9 +314,11 @@ angular.module('starter.controllers', ['nui.ionic', 'nui.ionic.box2d','timer','i
         };
         $scope.getRandomColor = function(){
             return $scope.colors[Math.floor(Math.random() * ($scope.colors.length - 1))]
-        }
+        };
 
-        $scope.categories = categories.all();
+
+
+        $scope.categories = categories.GetData();
 
         $timeout(function(){
             ionicMaterialMotion.pushDown({

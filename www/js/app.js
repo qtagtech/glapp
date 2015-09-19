@@ -16,7 +16,8 @@ angular.module('starter', ['ionic',
     'ionMdInput',
     'ngOpenFB',
     'angular-wurfl-image-tailor',
-    'ionic.contrib.ui.tinderCards'
+    'ionic.contrib.ui.tinderCards',
+    'ionicLazyLoad'
     ])
 
 /**
@@ -75,6 +76,10 @@ angular.module('starter', ['ionic',
                     user: function (UserService) {
                         var value = UserService.init();
                         return value;
+                    },
+                    load:function(categories){
+                        return categories.LoadData();
+
                     }
                 }
             })
@@ -83,12 +88,12 @@ angular.module('starter', ['ionic',
                 abstract: true,
                 templateUrl: 'templates/open.html',
                 controller: 'AppCtrl',
-                /*resolve: {
-                    user: function (UserService) {
-                        var value = UserService.init();
-                        return value;
+                resolve: {
+                    load:function(categories){
+                        return categories.LoadData();
+
                     }
-                }*/
+                }
             })
 
 
@@ -213,6 +218,7 @@ angular.module('starter', ['ionic',
                         }
                     }
                 }
+
             })
           .state('open.category', {
                 url: '/category',

@@ -1,13 +1,14 @@
 <ion-view  title='<img class="title-image" src="../img/logo_rectangle.png" />'>
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" scroll="true">
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" scroll="true" lazy-scroll>
         <div class="ionic">
             <div class="content">
                 <div class="list condensed-space no-padding animate-blinds">
                     <div ng-repeat="category in categories" class="card">
                         <a ui-sref="open.category({ category: category })" class="item clear-bg ink item-bg-image waves-effect waves-button waves-light has-mask-reverse" >
-                            <h2>{{category.name}}</h2>
-                            <p>{{category.description}}</p>
-                            <img class="ink" src="{{category.image.url}}">
+                            <h2>{{category.attributes.name}}</h2>
+                            <p>{{category.attributes.description}}</p>
+                            <img ng-if="$index < 4" ng-src="{{category.attributes.image.url}}">
+                            <img ng-if="$index >= 4" class="ink" image-lazy-src="{{category.attributes.image.url}}" image-lazy-loader="crescent" image-lazy-distance-from-bottom-to-load="100">
                         </a>
                     </div>
                 </div>
